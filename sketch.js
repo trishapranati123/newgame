@@ -42,58 +42,58 @@ function preload() {
   textimg = loadImage("images/text.png");
 }
 
-function setup() {
-  //createCanvas(1000, 400);
-  createCanvas(1600, 600);
-  ground = createSprite(600, 390, 1200, 10);
-  ground.addImage("ground", groundimg);
-  ground.x = ground.width / 2;
-  //ground.visible = false;
-
-  player = createSprite(50, 335, 10, 10);
-  // player = createSprite(100, 380, 10, 10);
-  player.addAnimation("boy", boyrunning);
-  player.addAnimation("player_dead", player_deadimg);
-  player.scale = 0.5;
-
-  invisibleground = createSprite(600, 385, 1200, 10);
-  invisibleground.visible = false;
-
-  gameOver = createSprite(620, 150);
-  gameOver.addImage("gameover", gameoverimg);
-  gameOver.scale = 0.5;
-
-  restart = createSprite(1100, 40);
-  restart.addImage("restart", restartImg);
-  restart.scale = 0.15;
-
-  gameOver.visible = false;
-  restart.visible = false;
-
-  obstaclesGroup = new Group();
-  cloudsGroup = new Group();
-  bulletGroup = new Group();
-  enemyGroup = new Group();
-  coinGroup = new Group();
-
-  playerhead = createSprite(50, 50, 10, 10);
-  playerhead.addImage("playerhead", playerheadimg);
-  playerhead.scale = 0.2;
-
-  coin = createSprite(200, 50, 10, 10);
-  coin.addImage("coin", coinimg);
-  coin.scale = 0.5;
-
-  instruct = createSprite(600, 170);
-  instruct.addImage("instruct", textimg);
-  instruct.lifetime = 200;
-}
+function setup() {  
+    //createCanvas(1000, 400);
+    //createCanvas(1600, 600);
+    createCanvas(windowWidth, windowHeight);
+    ground = createSprite(width-1000, height-200, width-400, 10);
+    ground.addImage("ground", groundimg);
+    ground.x = ground.width / 2;
+    //ground.visible = false;
+  
+    player = createSprite(50, 375, 10, 10);
+    // player = createSprite(100, 380, 10, 10);
+    player.addAnimation("boy", boyrunning);
+    player.addAnimation("player_dead", player_deadimg);
+    player.scale = 0.5;
+  
+    invisibleground = createSprite(width-800, height-200, 1200, 10);
+    invisibleground.visible = false;
+  
+    gameOver = createSprite(620, 150);
+    gameOver.addImage("gameover", gameoverimg);
+    gameOver.scale = 0.5;
+  
+    restart = createSprite(1100, 40);
+    restart.addImage("restart", restartImg);
+    restart.scale = 0.15;
+  
+    gameOver.visible = false;
+    restart.visible = false;
+  
+    obstaclesGroup = new Group();
+    cloudsGroup = new Group();
+    bulletGroup = new Group();
+    enemyGroup = new Group();
+    coinGroup = new Group();
+  
+    playerhead = createSprite(50, 50, 10, 10);
+    playerhead.addImage("playerhead", playerheadimg);
+    playerhead.scale = 0.2;
+  
+    coin = createSprite(200, 50, 10, 10);
+    coin.addImage("coin", coinimg);
+    coin.scale = 0.5;
+  
+    instruct = createSprite(600, 170);
+    instruct.addImage("instruct", textimg);
+    instruct.lifetime = 200;}
 
 function draw() {
   background(bg);
   drawSprites();
-
-  console.log(frameCount);
+  console.log("Print Width: "+ width);
+  console.log("Print Height: "+ height);  //console.log(frameCount);
   fill("black");
   textSize(35);
   textFont("monospace");
@@ -186,7 +186,7 @@ function draw() {
 function spawnPipes() {
   if (frameCount % 90 === 0) {
     //pipes = createSprite(1200, 320, 10, 10);
-    pipes = createSprite(1200, 320, 10, 10);
+    pipes = createSprite(width-200, height-270, 10, 10);
     // pipes = createSprite(1200, 500, 10, 10);
     pipes.addImage("pipes", obstacleImg);
     pipes.velocityX = -5;
@@ -197,7 +197,7 @@ function spawnPipes() {
 }
 function spawnClouds() {
   if (frameCount % 100 === 0) {
-    clouds = createSprite(1200, random(50, 150), 10, 10);
+    clouds = createSprite(width-200, random(50, height-450), 10, 10);
     clouds.addImage("clouds", cloudsimg);
     clouds.velocityX = -3;
     clouds.scale = 2;
@@ -207,7 +207,7 @@ function spawnClouds() {
 }
 function spawnEnemies() {
   if (frameCount % 300 === 0) {
-    enemies = createSprite(1200, 330, 10, 20);
+    enemies = createSprite(width-200, height-270, 10, 20);
     //enemies = createSprite(1200, 510, 10, 20);
     enemies.addAnimation("enemy", enemyimg);
     enemies.scale = 0.15;
@@ -231,7 +231,7 @@ function reset() {
 function spawnCoins() {
   if (frameCount % 200 === 0) {
     for (var i = 0; i < 5; i++) {
-      coin = createSprite(1200 + i * 20, 200, 10, 10);
+      coin = createSprite(width-200 + i * 20, 200, 10, 10);
       coin.addImage("coin", coinimg);
       coin.scale = 0.5;
       coin.velocityX = -4;
