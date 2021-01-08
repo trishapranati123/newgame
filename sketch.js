@@ -51,7 +51,7 @@ function setup() {
     ground.x = ground.width / 2;
     //ground.visible = false;
   
-    player = createSprite(50, 375, 10, 10);
+    player = createSprite(50, width-250, 10, 10);
     // player = createSprite(100, 380, 10, 10);
     player.addAnimation("boy", boyrunning);
     player.addAnimation("player_dead", player_deadimg);
